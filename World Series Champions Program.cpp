@@ -7,27 +7,74 @@
 #include <fstream>
 using namespace std;
 
-int main()
+void getTeams(string filename1, string filename2, vector<string>& teams, string team, vector<string>& winners, string win)
 {
     int x = 0;
 
-    ifstream File1("Teams.txt");
+    ifstream File1(filename1);
+    ifstream File2(filename2);
 
-    if (!File1)
+    if (!File1 && !File2)
     {
         std::cerr << "Error Opening File!" << std::endl;
         //return 1;
     }
-    
+
+   
+    while (getline(File1, team))
+    {
+        teams.push_back(team);
+        //cout << teams[x] << endl;
+        //x++;
+
+    }
+    x = 0;
+
+    cout << endl;
+
+    while (getline(File2, win))
+    {
+        //cout << "Test" << endl;
+        winners.push_back(win);
+       // cout << winners[x] << endl;
+        //x++;
+    }
+
+}
+
+int main()
+{
+    //int x = 0;
+    string filename1 = "Teams.txt";
+    string filename2 = "WorldSeriesWinners.txt";
     vector<string> Teams;
     string Team;
+    vector<string> Winners;
+    string Winner;
+    string teamName;
+    //int counter = 0;
+    
+    getTeams(filename1, filename2, Teams, Team, Winners, Winner);
 
-    while (getline(File1, Team))
+    while (teamName != "quit")
     {
-        Teams.push_back(Team);
-        cout << Teams[x] << endl;
-        x++;
-       
+        int counter = 0;
+        int x = 0;
+        cout << "Enter Team Name" << endl;
+        getline(cin, teamName);
+
+        for (string val : Winners)
+        {
+            //cout << "test" << endl;
+            if (teamName == Winners[x])
+            {
+                //cout << "test" << endl;
+                counter++;
+            }
+            x++;
+        }
+
+        cout << teamName << " won the World Series " << counter << " times." << endl;
     }
     
 }
