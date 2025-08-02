@@ -7,7 +7,7 @@
 #include <fstream>
 using namespace std;
 
-void getTeams(string filename1, string filename2, vector<string>& teams, string team, vector<string>& winners, string win)
+int getTeams(string filename1, string filename2, vector<string>& teams, string team, vector<string>& winners, string win)
 {
     int x = 0;
 
@@ -19,6 +19,7 @@ void getTeams(string filename1, string filename2, vector<string>& teams, string 
     if (!File1 && !File2)
     {
         cerr << "Error Opening File!" << std::endl;
+        return 0;
     }
 
     // Adds a value to the vector
