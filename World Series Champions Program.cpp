@@ -11,15 +11,17 @@ void getTeams(string filename1, string filename2, vector<string>& teams, string 
 {
     int x = 0;
 
+    // Finds files
     ifstream File1(filename1);
     ifstream File2(filename2);
 
+    //Checks if files can be opened
     if (!File1 && !File2)
     {
         cerr << "Error Opening File!" << std::endl;
     }
 
-   
+    // Adds a value to the vector
     while (getline(File1, team))
     {
         teams.push_back(team);
